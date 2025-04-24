@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
+import FundingBarChart from './components/FundingBarChart'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [fundingData, setFundingData] = useState(null)
+
+  useEffect(() => {
+    fetch('/funding.json')
+      .then((response) => response.json())
+      .then((data) => setFundingData(data))
+      .catch((error) => console.error('Error loading funding data:', error))
+  }, [])
 
   return (
-    <>
+    <div>
+      <h1>Funding Tracker</h1>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>Funding Data:</h2>
+        <pre>{fundingData ? JSON.stringify(fundingData, null, 2) : 'Loading...'}</pre>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      {fundingData && <FundingBarChart fundingData={fundingData} />}
+    </div>
   )
 }
 
