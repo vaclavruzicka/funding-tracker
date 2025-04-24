@@ -18,10 +18,39 @@ function App() {
       <h1>Funding Tracker</h1>
       <div>
         <h2>Funding Data:</h2>
-        <pre>{fundingData ? JSON.stringify(fundingData, null, 2) : 'Loading...'}</pre>
+        {fundingData ? (
+          <table className="funding-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Industry</th>
+                <th>Funding</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fundingData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.year}</td>
+                  <td>{item.industry}</td>
+                  <td>${item.funding.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
-      {fundingData && <FundingBarChart fundingData={fundingData} />}
-      {fundingData && <IndustryTrendChart fundingData={fundingData} />}
+      {fundingData && (
+        <div className="chart-container">
+          <FundingBarChart fundingData={fundingData} />
+        </div>
+      )}
+      {fundingData && (
+        <div className="chart-container">
+          <IndustryTrendChart fundingData={fundingData} />
+        </div>
+      )}
     </div>
   )
 }
