@@ -1,6 +1,8 @@
 [
-  { "year": 2021, "funding": 500000 },
-  { "year": 2021, "funding": 300000 },
-  { "year": 2022, "funding": 700000 },
-  { "year": 2023, "funding": 400000 }
+  { "year": 2021, "industry": "Tech", "funding": 500000 },
+  { "year": 2021, "industry": "Health", "funding": 300000 },
+  { "year": 2022, "industry": "Tech", "funding": 700000 },
+  { "year": 2022, "industry": "Health", "funding": 400000 },
+  { "year": 2023, "industry": "Tech", "funding": 600000 },
+  { "year": 2023, "industry": "Health", "funding": 500000 }
 ]

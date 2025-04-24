@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import FundingBarChart from './components/FundingBarChart'
+import IndustryTrendChart from './components/IndustryTrendChart'
 
 function App() {
   const [fundingData, setFundingData] = useState(null)
@@ -20,6 +21,7 @@ function App() {
         <pre>{fundingData ? JSON.stringify(fundingData, null, 2) : 'Loading...'}</pre>
       </div>
       {fundingData && <FundingBarChart fundingData={fundingData} />}
+      {fundingData && <IndustryTrendChart fundingData={fundingData} />}
     </div>
   )
 }
